@@ -1,3 +1,7 @@
 QueryIntent die {road_type} {road_number}
 QueryIntent für die {road_type} {road_number}
+QueryIntent gib mir {road_type} {road_number}
+QueryIntent sag mir {road_type} {road_number}
+QueryIntent meldungen zur {road_type} {road_number}
+QueryIntent gib mir die meldungen für die {road_type} {road_number}
 QueryIntent {road_type} {road_number}

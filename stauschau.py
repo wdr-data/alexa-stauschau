@@ -32,19 +32,32 @@ def launch():
 @ask.intent('QueryIntent')
 def query(road_type, road_number):
     road = road_type + road_number
+    road = road.replace('.', '').replace(',', '').replace(' ', '')
+
     messages_for_road = [message['description'].replace('<br />', '\n')
                          for message in messages
                          if message['road'].lower() == road]
 
     speech_text = '\n\n'.join(messages_for_road) or 'Keine Meldungen'
 
-    return statement(speech_text).simple_card('WDR StauSchau', speech_text)
+    return question(speech_text + '\n\nNennen Sie noch eine weitere Strecke oder sagen Sie "Stop"'
+                    ).simple_card('WDR StauSchau', speech_text)
 
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
     speech_text = 'Liefert aktuelle Verkehrsinformationen des WDR'
     return question(speech_text).reprompt(speech_text)
+
+
+@ask.intent('AMAZON.StopIntent')
+def stop():
+    return statement("Gute Fahrt!")
+
+
+@ask.intent('AMAZON.CancelIntent')
+def cancel():
+    return statement("Gute Fahrt!")
 
 
 @ask.session_ended
