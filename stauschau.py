@@ -34,7 +34,7 @@ def query(road_type, road_number):
     road = road_type + road_number
     messages_for_road = [message['description'].replace('<br />', '\n')
                          for message in messages
-                         if message['road'] == road]
+                         if message['road'].lower() == road]
 
     speech_text = '\n\n'.join(messages_for_road) or 'Keine Meldungen'
 
