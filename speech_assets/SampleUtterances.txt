@@ -1,7 +1,3 @@
-HelloWorldIntent say hello
-HelloWorldIntent say hello world
-HelloWorldIntent hello
-HelloWorldIntent say hi
-HelloWorldIntent say hi world
-HelloWorldIntent hi
-HelloWorldIntent how are you
+QueryIntent die {road_type} {road_number}
+QueryIntent für die {road_type} {road_number}
+QueryIntent {road_type} {road_number}

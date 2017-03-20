@@ -1,7 +1,16 @@
 {
   "intents": [
     {
-      "intent": "HelloWorldIntent"
+      "intent": "QueryIntent",
+      "slots": [
+        {
+          "name": "road_type",
+          "type": "ROAD_TYPE"
+        }, {
+          "name": "road_number",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
     },
     {
       "intent": "AMAZON.HelpIntent"
