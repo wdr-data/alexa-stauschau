@@ -1,5 +1,6 @@
 import logging
 import json
+import random
 
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
@@ -8,8 +9,16 @@ import requests
 
 app = Flask(__name__)
 ask = Ask(app, "/")
-#logging.basicConfig(level=logging.DEBUG)
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
+
+
+INTRO_MSG = 'Nennen Sie eine Strecke, zum Beispiel "A1"'
+NO_MESSAGES_MSG = 'Keine Meldungen für die %s'
+REPEAT_MSG = 'Kannst du das noch einmal wiederholen?'
+ANOTHER_MSG = 'Nennen Sie noch eine weitere Strecke oder sagen Sie "Stop"'
+HELP_MSG = 'Liefert aktuelle Verkehrsinformationen des WDR'
+STOP_MESSAGES = ["Gute Fahrt!", "Bis dann.", "Fahren Sie vorsichtig.", "Tschüss."]
+CARD_TITLE = 'WDR Verkehr'
 
 
 def get_traffic_messages():
@@ -25,12 +34,15 @@ def get_traffic_messages():
 
 @ask.launch
 def launch():
-    speech_text = 'Nennen Sie eine Strecke, zum Beispiel "A1"'
+    speech_text = INTRO_MSG
     return question(speech_text).reprompt(speech_text)
 
 
 @ask.intent('QueryIntent')
 def query(road_type, road_number):
+    if road_type is None or road_number is None:
+        return question(REPEAT_MSG)
+
     road = road_type + road_number
     road = road.replace('.', '').replace(',', '').replace(' ', '')
 
@@ -38,26 +50,26 @@ def query(road_type, road_number):
                          for message in messages
                          if message['road'].lower() == road]
 
-    speech_text = '\n\n'.join(messages_for_road) or 'Keine Meldungen'
+    speech_text = '\n\n'.join(messages_for_road) or NO_MESSAGES_MSG % road.upper()
 
-    return question(speech_text + '\n\nNennen Sie noch eine weitere Strecke oder sagen Sie "Stop"'
-                    ).simple_card('WDR StauSchau', speech_text)
+    return question(speech_text + '\n\n' + ANOTHER_MSG
+                    ).simple_card(CARD_TITLE, speech_text)
 
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
-    speech_text = 'Liefert aktuelle Verkehrsinformationen des WDR'
+    speech_text = HELP_MSG
     return question(speech_text).reprompt(speech_text)
 
 
 @ask.intent('AMAZON.StopIntent')
 def stop():
-    return statement("Gute Fahrt!")
+    return statement(random.choice(STOP_MESSAGES))
 
 
 @ask.intent('AMAZON.CancelIntent')
 def cancel():
-    return statement("Gute Fahrt!")
+    return statement(random.choice(STOP_MESSAGES))
 
 
 @ask.session_ended
