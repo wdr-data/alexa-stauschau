@@ -1,6 +1,8 @@
 import logging
 import json
 import random
+from threading import Thread
+from time import sleep
 
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
@@ -9,8 +11,9 @@ import requests
 
 app = Flask(__name__)
 ask = Ask(app, "/")
-logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
+logging.getLogger('flask_ask').setLevel(logging.DEBUG)
+logging.root.setLevel(logging.INFO)
 
 INTRO_MSG = 'Nennen Sie eine Strecke, zum Beispiel "A1"'
 NO_MESSAGES_MSG = 'Keine Meldungen für die %s'
@@ -19,6 +22,8 @@ ANOTHER_MSG = 'Nennen Sie noch eine weitere Strecke oder sagen Sie "Stop"'
 HELP_MSG = 'Liefert aktuelle Verkehrsinformationen des WDR'
 STOP_MESSAGES = ["Gute Fahrt!", "Bis dann.", "Fahren Sie vorsichtig.", "Tschüss."]
 CARD_TITLE = 'WDR Verkehr'
+
+messages = list()
 
 
 def get_traffic_messages():
@@ -77,6 +82,13 @@ def session_ended():
     return "", 200
 
 
+def update_traffic_messages():
+    global messages
+    while True:
+        sleep(60*5)
+        messages = get_traffic_messages()
+
 if __name__ == '__main__':
-    messages = get_traffic_messages()
-    app.run(debug=True)
+    update_traffic_messages()
+    Thread(target=update_traffic_messages, daemon=True).start()
+    app.run(debug=False)
