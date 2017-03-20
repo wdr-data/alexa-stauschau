@@ -7,7 +7,11 @@ from time import sleep
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
 import requests
+from OpenSSL import SSL
 
+context = SSL.Context(SSL.SSLv23_METHOD)
+context.use_privatekey_file('private.key')
+context.use_certificate_file('cert.pem')
 
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -91,4 +95,4 @@ def update_traffic_messages():
 if __name__ == '__main__':
     update_traffic_messages()
     Thread(target=update_traffic_messages, daemon=True).start()
-    app.run(debug=False)
+    app.run(host='0.0.0.0', port='443', debug=False, ssl_context=context)
