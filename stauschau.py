@@ -19,7 +19,7 @@ INTRO_MSG = 'Nennen Sie eine Strecke, zum Beispiel "A1"'
 NO_MESSAGES_MSG = 'Keine Meldungen für die %s'
 REPEAT_MSG = 'Kannst du das noch einmal wiederholen?'
 ANOTHER_MSG = 'Nennen Sie noch eine weitere Strecke oder sagen Sie "Stop"'
-HELP_MSG = 'Liefert aktuelle Verkehrsinformationen des WDR'
+HELP_MSG = 'Ich liefere aktuelle Verkehrsinformationen des WDR.'
 STOP_MESSAGES = ["Gute Fahrt!", "Bis dann.", "Fahren Sie vorsichtig.", "Tschüss."]
 CARD_TITLE = 'WDR Verkehr'
 
@@ -53,7 +53,7 @@ def query(road_type, road_number):
 
     messages_for_road = [message['description'].replace('<br />', '\n')
                          for message in messages
-                         if message['road'].lower() == road]
+                         if message['road'].lower() == road and not message['closure']]
 
     speech_text = '\n\n'.join(messages_for_road) or NO_MESSAGES_MSG % road.upper()
 
