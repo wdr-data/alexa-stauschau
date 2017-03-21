@@ -57,6 +57,8 @@ def query(road_type, road_number):
 
     speech_text = '\n\n'.join(messages_for_road) or NO_MESSAGES_MSG % road.upper()
 
+    speech_text = speech_text.replace('-', ' ').replace('/', ' ')
+
     return question(speech_text + '\n\n' + ANOTHER_MSG
                     ).simple_card(CARD_TITLE, speech_text)
 
