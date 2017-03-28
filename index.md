@@ -25,6 +25,7 @@ Note right of Alexa: Gute Fahrt!
 
 ## OneShot Launch
 <div class="mermaid">
+sequenceDiagram
 User->> Alexa: OneShot
 Note left of User: Alexa, frage WDR Verkehr nach A1
 Alexa->>User: Answer
