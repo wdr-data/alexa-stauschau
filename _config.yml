@@ -1,3 +1,5 @@
 theme: jekyll-theme-leap-day
+gems:
+    - jekyll-mermaid
 mermaid:
   src: 'https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.min.js'
