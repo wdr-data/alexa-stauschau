@@ -46,15 +46,15 @@ Note right of Alexa: Tschüs!
 <div class="mermaid">
 sequenceDiagram
 User->> Alexa: Query
-Note left of User: A irgendwas
+Note left of User: A irgendwas.
 Alexa->>User: Repeat
 Note right of Alexa: Kannst Du das noch einmal wiederholen?
 User->> Alexa: Unclear match
-Note left of User: Mach 3
+Note left of User: Mach 3.
 Alexa->>User: Answer if unclear
-Note right of Alexa: Keine Meldungen für die "Mach 3"
+Note right of Alexa: Keine Meldungen für die "Mach 3".
 Note right of Alexa: Nennen sie noch eine weitere Strecke oder sagen Sie Stopp.
-User->>Alexa: > 8 sec. not responding.
+User->>Alexa: > 8 sec. not responding
 Note left of User: ...
 Alexa->>User: Error answer
 Note right of Alexa: Beim angeforderten Skill ist ein Fehler aufgetreten.
