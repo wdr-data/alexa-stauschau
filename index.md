@@ -25,7 +25,18 @@ Note right of Alexa: Gute Fahrt!
 
 ## OneShot Launch
 <div class="mermaid">
-sequenceDiagram
-participant John
-Note right of John: Text in note
+User->> Alexa: OneShot
+Note left of User: Alexa, frage WDR Verkehr nach A1
+Alexa->>User: Answer
+Note left of Alexa: A1, Dortmund Richtung Köln zwischen Burscheid und Kreuz Leverkusen: 8 Km Stau. Zeitverlust: mehr als 20 Minuten.  
+Note left of Alexa: Nennen sie noch eine weitere Strecke oder sagen Sie Stopp.
+User->>Alexa: Query
+Note left of User: A7
+Alexa->>User: Answer
+Note right of Alexa: Keine Meldungen für die A7.
+Note right of Alexa: Nennen sie noch eine weitere Strecke oder sagen Sie Stopp.
+User->>Alexa: Stopp
+Note left of User: Stopp
+Alexa->>User: Stopp Answer
+Note right of Alexa: Tschüs!
 </div>
