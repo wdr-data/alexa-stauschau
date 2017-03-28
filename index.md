@@ -5,9 +5,9 @@
 sequenceDiagram
 Note left of User: Dialog Launch
 User->> Alexa: Query intent
-Note left of Alexa: Alexa, starte WDR Verkehr
+Note left of User: Alexa, starte WDR Verkehr
 Alexa->> User: Answer
-Note left of Alexa: Nennen Sie eine Strecke, zum Beispiel A1.
+Note right of Alexa: Nennen Sie eine Strecke, zum Beispiel A1.
 User->>Alexa: Query
 Note left of Alexa: A1
 Alexa->>User: Answer
