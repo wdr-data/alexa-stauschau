@@ -3,7 +3,6 @@
 <script src="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.min.js"></script>
 <div class="mermaid">
 sequenceDiagram
-Note left of User: Dialog Launch
 User->> Alexa: Query intent
 Note left of User: Alexa, starte WDR Verkehr
 Alexa->> User: Answer
