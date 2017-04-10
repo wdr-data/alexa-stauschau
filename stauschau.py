@@ -15,11 +15,18 @@ ask = Ask(app, "/")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 logging.root.setLevel(logging.INFO)
 
-INTRO_MSG = 'Nennen Sie eine Strecke, zum Beispiel "A1"'
+INTRO_MSG = 'Nennen Sie eine Strecke, zum Beispiel "A 1", oder sagen Sie "Hilfe".'
+INTRO_MSG_2 = '''Fragen sie nach einer Autobahn, zum Beispiel "A 3",
+oder einer Bundesstraße wie "B 7". Zum Beenden, sagen Sie "Stop". 
+Um die Hilfe anzuhören, sagen Sie "Hilfe"'''
 NO_MESSAGES_MSG = 'Keine Meldungen für die %s'
 REPEAT_MSG = 'Kannst du das noch einmal wiederholen?'
 ANOTHER_MSG = 'Nennen Sie noch eine weitere Strecke oder sagen Sie "Stop"'
-HELP_MSG = 'Ich liefere aktuelle Verkehrsinformationen des WDR.'
+HELP_MSG = '''Dieser Skill liefert aktuelle W. D. R. Verkehrsinformationen für Nordrhein Westfalen. 
+Fragen sie nach Autobahnen zum Beispiel mit "A 1" oder "A 7", nach Bundesstraßen mit "B 224" 
+oder nach Kreisstraßen mit "K 17". Sie können den Skill auch direkt aufrufen, indem Sie sagen: 
+"Alexa frage W. D. R. Verkehr nach A 3".  Wenn Sie den Skill beenden möchten, sagen Sie "Stop".
+'''
 STOP_MESSAGES = ["Gute Fahrt!", "Bis dann.", "Fahren Sie vorsichtig.", "Tschüss."]
 CARD_TITLE = 'WDR Verkehr'
 
@@ -39,8 +46,7 @@ def get_traffic_messages():
 
 @ask.launch
 def launch():
-    speech_text = INTRO_MSG
-    return question(speech_text).reprompt(speech_text)
+    return question(INTRO_MSG).reprompt(INTRO_MSG_2)
 
 
 @ask.intent('QueryIntent')
@@ -66,8 +72,7 @@ def query(road_type, road_number):
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
-    speech_text = HELP_MSG
-    return question(speech_text).reprompt(speech_text)
+    return question(HELP_MSG).reprompt(INTRO_MSG_2)
 
 
 @ask.intent('AMAZON.StopIntent')
