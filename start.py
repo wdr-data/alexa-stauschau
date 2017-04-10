@@ -5,7 +5,7 @@ import os
 
 import cherrypy
 
-import feed
+import stauschau
 
 class FlaskApplication(object):
     HOST = "127.0.0.1"
@@ -22,7 +22,7 @@ class FlaskApplication(object):
         })
 
         cherrypy.log("Loading and serving Flask application")
-        cherrypy.tree.graft(feed.app, '/')
+        cherrypy.tree.graft(stauschau.app, '/')
         cherrypy.engine.start()
         cherrypy.log("Your app is running at http://%s:%s" % (self.HOST, self.PORT))
 
