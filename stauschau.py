@@ -78,18 +78,18 @@ def stop():
 def cancel():
     return statement(random.choice(STOP_MESSAGES))
 
-
 @ask.session_ended
 def session_ended():
     return "", 200
-
 
 def update_traffic_messages():
     global messages
     while True:
         messages = get_traffic_messages()
-        sleep(60*5)
+        sleep(60)
 
-if __name__ == '__main__':
-    Thread(target=update_traffic_messages, daemon=True).start()
-    app.run(host='127.0.0.1', port='5001', debug=False)
+
+Thread(target=update_traffic_messages, daemon=True).start()
+
+if __name__ == '__main__':    
+    app.run(host='127.0.0.1', port='5000', debug=False)
