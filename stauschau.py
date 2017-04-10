@@ -53,13 +53,14 @@ def query(road_type, road_number):
 
     messages_for_road = [message['description'].replace('<br />', '\n')
                          for message in messages
-                         if message['road'].lower() == road and not message['closure']]
+                         if message['road'].lower() == road.lower() and not message['closure']]
 
     speech_text = '\n\n'.join(messages_for_road) or NO_MESSAGES_MSG % road.upper()
 
     speech_text = speech_text.replace('-', ' ').replace('/', ' ')
 
     return question(speech_text + '\n\n' + ANOTHER_MSG
+                    ).reprompt(ANOTHER_MSG
                     ).simple_card(CARD_TITLE, speech_text)
 
 
@@ -85,7 +86,11 @@ def session_ended():
 def update_traffic_messages():
     global messages
     while True:
-        messages = get_traffic_messages()
+        try:
+            messages = get_traffic_messages()
+        except:
+            logging.warning("Parsing JSON failed!")
+
         sleep(60)
 
 
