@@ -54,12 +54,17 @@ def query(road_type, road_number):
     if road_type is None or road_number is None:
         return question(REPEAT_MSG)
 
+    if road_type.lower() == 'r':
+        road_type = 'a'
+        
     road = road_type + road_number
     road = road.replace('.', '').replace(',', '').replace(' ', '')
 
     messages_for_road = [message['description'].replace('<br />', '\n')
                          for message in messages
-                         if message['road'].lower() == road.lower() and not message['closure']]
+                         if message['road'].lower() == road.lower() 
+                         and not message['closure'] 
+                         or message['warning']]
 
     speech_text = '\n\n'.join(messages_for_road) or NO_MESSAGES_MSG % road.upper()
 
