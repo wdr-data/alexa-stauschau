@@ -24,9 +24,9 @@ REPEAT_MSG = 'Kannst du das noch einmal wiederholen?'
 ANOTHER_MSG = 'Nennen Sie noch eine weitere Strecke oder sagen Sie "Stop"'
 HELP_MSG = '''Dieser Skill liefert aktuelle WDR Verkehrsinformationen für Nordrhein Westfalen. 
 Fragen sie nach Autobahnen zum Beispiel mit "A 1" oder "A 7", nach Bundesstraßen mit "B 224" 
-oder nach Kreisstraßen mit "K 17"
+oder nach Kreisstraßen mit "K siebzehn". 
 Sie können den Skill auch direkt aufrufen, indem Sie sagen: 
-"Alexa frage WDR Verkehr nach A 3"
+"Alexa frage WDR Verkehr nach A drei".
 Wenn Sie den Skill beenden möchten, sagen Sie "Stop".
 '''
 STOP_MESSAGES = ["Gute Fahrt!", "Bis dann.", "Fahren Sie vorsichtig.", "Tschüss."]
