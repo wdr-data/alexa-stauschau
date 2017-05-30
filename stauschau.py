@@ -15,21 +15,22 @@ ask = Ask(app, "/")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 logging.root.setLevel(logging.INFO)
 
-INTRO_MSG = 'Nennen Sie eine Strecke, zum Beispiel "A 1", oder sagen Sie "Hilfe".'
-INTRO_MSG_2 = '''Fragen sie nach einer Autobahn, zum Beispiel "A 3",
-oder einer Bundesstraße wie "B 7". Zum Beenden, sagen Sie "Stop". 
-Um die Hilfe anzuhören, sagen Sie "Hilfe"'''
+INTRO_MSG = 'Nenne eine Strecke, zum Beispiel "A 1", oder sag "Hilfe".'
+INTRO_MSG_2 = '''Frage nach einer Autobahn, zum Beispiel "A 3",
+oder einer Bundesstraße wie "B 7". Zum Beenden, sage "Stop". 
+Um die Hilfe anzuhören, sage "Hilfe"'''
 NO_MESSAGES_MSG = 'Keine Meldungen für die %s'
 REPEAT_MSG = 'Kannst du das noch einmal wiederholen?'
-ANOTHER_MSG = 'Nennen Sie noch eine weitere Strecke oder sagen Sie "Stop"'
+ANOTHER_MSG = 'Nenne noch eine weitere Strecke oder sage "Stop"'
 HELP_MSG = '''Dieser Skill liefert aktuelle WDR Verkehrsinformationen für Nordrhein Westfalen. 
-Fragen sie nach Autobahnen zum Beispiel mit "A 1" oder "A 7", nach Bundesstraßen mit "B 224" 
+Frage nach Autobahnen zum Beispiel mit "A 1" oder "A 7", nach Bundesstraßen mit "B 224" 
 oder nach Kreisstraßen mit "K siebzehn". 
-Sie können den Skill auch direkt aufrufen, indem Sie sagen: 
+Du kannst den Skill auch direkt aufrufen, indem du sagst: 
 "Alexa frage WDR Verkehr nach A drei".
-Wenn Sie den Skill beenden möchten, sagen Sie "Stop".
+Mehr Informationen und Karten findest Du auf w d r Punkt d e Schrägstrich verkehrslage.
+Wenn Du den Skill beenden möchtest, sage "Stop".
 '''
-STOP_MESSAGES = ["Gute Fahrt!", "Bis dann.", "Fahren Sie vorsichtig.", "Tschüss."]
+STOP_MESSAGES = ["Gute Fahrt!", "Bis dann.", "Fahr vorsichtig.", "Tschüss."]
 CARD_TITLE = 'WDR Verkehr'
 
 messages = list()
@@ -58,7 +59,10 @@ def query(road_type, road_number):
 
     if road_type.lower() == 'r':
         road_type = 'a'
-        
+
+    if road_type.lower() in ('d', 'p', 'e'):
+        road_type = 'b'
+
     road = road_type + road_number
     road = road.replace('.', '').replace(',', '').replace(' ', '')
 
