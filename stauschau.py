@@ -15,22 +15,27 @@ ask = Ask(app, "/")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 logging.root.setLevel(logging.INFO)
 
-INTRO_MSG = 'Nenne eine Strecke, zum Beispiel "A 1", oder sag "Hilfe".'
+INTRO_MSG = '<speak><say-as interpret-as="interjection">Hallo</say-as>. Nenne eine Strecke, zum Beispiel "A 1", oder sag "Hilfe".</speak>'
 INTRO_MSG_2 = '''Frage nach einer Autobahn, zum Beispiel "A 3",
 oder einer Bundesstraße wie "B 7". Zum Beenden, sage "Stop". 
 Um die Hilfe anzuhören, sage "Hilfe"'''
 NO_MESSAGES_MSG = 'Keine Meldungen für die %s'
 REPEAT_MSG = 'Kannst du das noch einmal wiederholen?'
 ANOTHER_MSG = 'Nenne noch eine weitere Strecke oder sage "Stop"'
-HELP_MSG = '''Dieser Skill liefert aktuelle WDR Verkehrsinformationen für Nordrhein Westfalen. 
+HELP_MSG = '''<speak>Dieser Skill liefert aktuelle <say-as interpret-as="spell-out">WDR</say-as> Verkehrsinformationen für Nordrhein Westfalen. 
 Frage nach Autobahnen zum Beispiel mit "A 1" oder "A 7", nach Bundesstraßen mit "B 224" 
 oder nach Kreisstraßen mit "K siebzehn". 
 Du kannst den Skill auch direkt aufrufen, indem du sagst: 
-"Alexa frage WDR Verkehr nach A drei".
-Mehr Informationen und Karten findest Du auf w d r Punkt d e Schrägstrich verkehrslage.
-Wenn Du den Skill beenden möchtest, sage "Stop".
+"Alexa, frage <say-as interpret-as="spell-out">WDR</say-as> Verkehr nach A drei".
+Mehr Informationen und Karten findest Du auf <say-as interpret-as="spell-out">wdr.de/</say-as>verkehrslage.
+Wenn Du den Skill beenden möchtest, sage "Stop".</speak>
 '''
-STOP_MESSAGES = ["Gute Fahrt!", "Bis dann.", "Fahr vorsichtig.", "Tschüss."]
+STOP_MESSAGES = [
+    'Gute Fahrt!',
+    '<speak><say-as interpret-as="interjection">Bis dann.</say-as>',
+    'Fahr vorsichtig.',
+    '<speak><say-as interpret-as="interjection">Tschüss.</say-as></speak>',
+]
 CARD_TITLE = 'WDR Verkehr'
 
 messages = list()
