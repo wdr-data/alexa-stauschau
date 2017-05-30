@@ -32,7 +32,9 @@ Wenn Du den Skill beenden möchtest, sage "Stop".</speak>
 '''
 STOP_MESSAGES = [
     'Gute Fahrt!',
-    '<speak><say-as interpret-as="interjection">Bis dann.</say-as>',
+    '<speak><say-as interpret-as="interjection">Gute Reise</say-as></speak>',
+    '<speak><say-as interpret-as="interjection">Mach\'s gut</say-as></speak>',
+    '<speak><say-as interpret-as="interjection">Bis dann.</say-as></speak>',
     'Fahr vorsichtig.',
     '<speak><say-as interpret-as="interjection">Tschüss.</say-as></speak>',
 ]
