@@ -12,7 +12,7 @@ import requests
 app = Flask(__name__)
 ask = Ask(app, "/")
 
-logging.getLogger('flask_ask').setLevel(logging.DEBUG)
+logging.getLogger('flask_ask').setLevel(logging.INFO)
 logging.root.setLevel(logging.INFO)
 
 INTRO_MSG = '<speak><say-as interpret-as="interjection">Hallo</say-as>. Nenne eine Strecke, zum Beispiel "A 1", oder sag "Hilfe".</speak>'
