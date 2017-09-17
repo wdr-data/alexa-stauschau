@@ -2,10 +2,16 @@
 # -*- coding: utf-8 -*-
 
 import os
+import logging
 
 import cherrypy
 
 import stauschau
+
+
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+
 
 class FlaskApplication(object):
     HOST = "127.0.0.1"

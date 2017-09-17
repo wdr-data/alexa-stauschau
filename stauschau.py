@@ -44,11 +44,11 @@ messages = list()
 
 
 def get_traffic_messages():
-    logging.info('Downloading traffic info JSON...')
+    logging.debug('Downloading traffic info JSON...')
     r = requests.get('http://exporte.wdr.de/WDRVerkehrWebsite/map/all?zoom=8&bbox=4.27%2C49.71%2C12.73%2C53.01',)
                      #params={'zoom': '8', 'bbox': '4.27 49.71 12.73 53.01'})
 
-    logging.info('Parsing JSON...')
+    logging.debug('Parsing JSON...')
     response_dict = json.loads(r.text)
 
     return response_dict['messages']
@@ -76,8 +76,7 @@ def query(road_type, road_number):
     messages_for_road = [message['description'].replace('<br />', '\n')
                          for message in messages
                          if message['road'].lower() == road.lower() 
-                         and not message['closure'] 
-                         or message['warning']]
+                         and (not message['closure'] or message['warning'])]
 
     speech_text = '\n\n'.join(messages_for_road) or NO_MESSAGES_MSG % road.upper()
 
