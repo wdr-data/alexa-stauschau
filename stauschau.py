@@ -97,13 +97,27 @@ def stop():
     return statement(random.choice(STOP_MESSAGES))
 
 
+# TODO research why this is needed
+@ask.intent('StopIntent')
+def stop():
+    return statement(random.choice(STOP_MESSAGES))
+
+
 @ask.intent('AMAZON.CancelIntent')
 def cancel():
     return statement(random.choice(STOP_MESSAGES))
 
+
+# TODO research why this is needed
+@ask.intent('CancelIntent')
+def stop():
+    return statement(random.choice(STOP_MESSAGES))
+
+
 @ask.session_ended
 def session_ended():
     return "", 200
+
 
 def update_traffic_messages():
     global messages
