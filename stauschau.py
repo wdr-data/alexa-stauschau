@@ -6,6 +6,7 @@ from time import sleep
 
 from flask import Flask
 from flask_ask import Ask, request, session, question, statement
+from flask_ask.verifier import VerificationError
 import requests
 
 
@@ -117,6 +118,11 @@ def stop():
 @ask.session_ended
 def session_ended():
     return "", 200
+
+
+@app.errorhandler(VerificationError)
+def failed_verification(error):
+    return str(error), 400
 
 
 def update_traffic_messages():
